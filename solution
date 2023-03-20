@@ -1,0 +1,12 @@
+docker run -it --name myalpes -v /MountPoint alpine /bin/ash
+docker commit myalpes myalpine:v12
+docker images
+docker history myalpine:v12
+docker export myalpes >myalpes.tar
+docker images
+docker rmi -f myalpine:v12
+cat myalpes.tar | docker import - myalpine:v12
+docker history myalpine:v12
+docker tag image myalpine:v12 systemdevformations/myalpine:v12
+docker login -u systemdevformations -p xxxxxxx
+docker push systemdevformations/myalpine:v12
